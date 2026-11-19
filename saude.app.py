@@ -7,43 +7,138 @@ st.set_page_config(
     layout="wide"
 )
 
-# ---------------- ESTILO E CORES ----------------
+
+
+# ---------------- ESTILO E CORES — NEON ROXO E AZUL ----------------
 st.markdown("""
 <style>
     .stApp {
-        background: linear-gradient(135deg, #e0f4ff 0%, #f0efff 50%, #e8f8f5 100%);
+        background:
+            radial-gradient(circle at 15% 10%, rgba(120, 59, 255, 0.20), transparent 30%),
+            radial-gradient(circle at 85% 80%, rgba(67, 217, 232, 0.12), transparent 30%),
+            linear-gradient(135deg, #17152D 0%, #1B1935 50%, #101B35 100%);
+        color: #F5F1FF;
     }
-    h1, h2, h3 {
-        color: #5b7cfa;
+
+    [data-testid="stHeader"] {
+        background: rgba(23, 21, 45, 0.95);
     }
+
+    h1 {
+        color: #C7A5FF;
+        text-shadow: 0 0 12px rgba(181, 106, 255, 0.7);
+    }
+
+    h2 {
+        color: #BFA0FF;
+        text-shadow: 0 0 8px rgba(120, 59, 255, 0.4);
+    }
+
+    h3 {
+        color: #71E8FF;
+    }
+
+    p, li, ul {
+        color: #F0ECFF;
+        font-size: 16px;
+    }
+
     .card {
-        background-color: white;
+        background: linear-gradient(135deg, #30205C, #252B50);
         padding: 20px;
         border-radius: 16px;
-        box-shadow: 0 4px 12px rgba(91, 124, 250, 0.1);
+        border: 1px solid rgba(181, 106, 255, 0.55);
+        box-shadow:
+            0 0 12px rgba(120, 59, 255, 0.25),
+            0 0 25px rgba(67, 217, 232, 0.10);
         margin-bottom: 20px;
+        transition: all 0.3s ease;
     }
+
+    .card:hover {
+        border-color: #B56AFF;
+        box-shadow:
+            0 0 18px rgba(181, 106, 255, 0.65),
+            0 0 35px rgba(67, 217, 232, 0.20);
+        transform: translateY(-4px);
+    }
+
     .quote {
-        background-color: #fef3c7;
-        border-left: 5px solid #f59e0b;
+        background: linear-gradient(135deg, #30204F, #252B50);
+        border-left: 5px solid #43D9E8;
         padding: 15px;
         font-style: italic;
         border-radius: 8px;
+        color: #F5F1FF;
+        box-shadow: 0 0 12px rgba(67, 217, 232, 0.18);
     }
+
     .help-box {
-        background: linear-gradient(135deg, #d1fae5 0%, #d4e7ff 100%);
-        padding: 20px;
+        background: linear-gradient(135deg, #173C50, #25205A);
+        padding: 25px;
         border-radius: 16px;
-        border: 2px solid #6ee7b7;
+        border: 2px solid #43D9E8;
+        color: #E8FAFF;
+        box-shadow: 0 0 18px rgba(67, 217, 232, 0.30);
     }
+
+    .help-box p, .help-box strong {
+        color: #E8FAFF;
+    }
+
+    /* MENU LATERAL */
+    [data-testid="stSidebar"] {
+        background: linear-gradient(180deg, #20163F, #152443);
+        border-right: 1px solid rgba(181, 106, 255, 0.5);
+    }
+
+    [data-testid="stSidebar"] > div:first-child {
+        background: transparent;
+    }
+
+    [data-testid="stSidebar"] p,
+    [data-testid="stSidebar"] label,
+    [data-testid="stSidebar"] span {
+        color: #F5F1FF !important;
+    }
+
+    [data-testid="stSidebar"] [role="radiogroup"] label {
+        background: rgba(120, 59, 255, 0.10);
+        border: 1px solid rgba(181, 106, 255, 0.20);
+        border-radius: 10px;
+        padding: 8px;
+        margin-bottom: 5px;
+        transition: all 0.2s ease;
+    }
+
+    [data-testid="stSidebar"] [role="radiogroup"] label:hover {
+        background: rgba(120, 59, 255, 0.30);
+        border-color: #B56AFF;
+    }
+
 </style>
 """, unsafe_allow_html=True)
 
+
+
 # ---------------- CABEÇALHO ----------------
 st.markdown("""
-<div style="background: linear-gradient(135deg, #5b7cfa 0%, #8b5cf6 100%); padding: 30px; border-radius: 16px; text-align: center; color: white;">
-    <h1>🌿 Mente Saudável</h1>
-    <h3>Compreendendo e Cuidando da Saúde Mental dos Jovens</h3>
+<div style="
+    background: linear-gradient(120deg, #5B2CFF 0%, #783BFF 55%, #176BFF 100%);
+    padding: 30px;
+    border-radius: 18px;
+    text-align: center;
+    color: white;
+    border: 1px solid rgba(181, 106, 255, 0.8);
+    box-shadow: 0 0 18px rgba(120, 59, 255, 0.65),
+                0 0 38px rgba(67, 217, 232, 0.22);
+">
+    <h1 style="color: white; text-shadow: 0 0 15px rgba(255,255,255,0.5);">
+        🌿 Mente Saudável
+    </h1>
+    <h3 style="color: #E0E7FF;">
+        Compreendendo e Cuidando da Saúde Mental dos Jovens
+    </h3>
 </div>
 <br>
 """, unsafe_allow_html=True)
@@ -60,11 +155,11 @@ if menu == "🏠 Início":
     st.markdown("""
     <div class="card">
         <h3>🌸🧠✨</h3>
-        <p style="font-size: 18px;">
+        <p>
         A saúde mental é tão importante quanto a saúde física. No entanto, muitas vezes ela é deixada de lado ou compreendida de forma errada, especialmente entre os jovens que estão passando por tantas mudanças ao mesmo tempo.
         </p>
-        <p style="font-size: 18px;">
-        Este site foi criado por um grupo de cinco estudantes com um objetivo simples mas muito importante: <strong>informar, conscientizar e acolher</strong>. Aqui você vai encontrar informações verdadeiras, dicas práticas e saber onde buscar ajuda quando precisar. Você não está sozinho! 💚
+        <p>
+        Este site foi criado por um grupo de cinco estudantes com um objetivo simples mas muito importante: <strong style="color:#a78bfa;">informar, conscientizar e acolher</strong>. Aqui você vai encontrar informações verdadeiras, dicas práticas e saber onde buscar ajuda quando precisar. Você não está sozinho! 💚
         </p>
     </div>
     <div class="quote">
@@ -158,7 +253,7 @@ elif menu == "💜 Cuidados":
     
     st.markdown("""
     <div class="card">
-    <p style="font-size: 18px;">Assim como cuidamos do nosso corpo, a mente também precisa de atenção diária. Aqui vão algumas dicas simples que fazem muita diferença:</p>
+    <p>Assim como cuidamos do nosso corpo, a mente também precisa de atenção diária. Aqui vão algumas dicas simples que fazem muita diferença:</p>
     </div>
     """, unsafe_allow_html=True)
     
@@ -185,8 +280,8 @@ elif menu == "🆘 Preciso de Ajuda":
     
     st.markdown("""
     <div class="help-box">
-        <h3>📞 Canais de Apoio Gratuito</h3>
-        <p><strong>CVV — Centro de Valorização da Vida:</strong> Ligue <strong>188</strong> — funciona 24h, todos os dias. É gratuito e confidencial. Ou acesse: cvv.org.br</p>
+        <h3 style="color:#6ee7b7;">📞 Canais de Apoio Gratuito</h3>
+        <p><strong>CVV — Centro de Valorização da Vida:</strong> Ligue <strong style="color:#fbbf24;">188</strong> — funciona 24h, todos os dias. É gratuito e confidencial. Ou acesse: cvv.org.br</p>
         <p><strong>CAPS:</strong> Procure a unidade mais próxima da sua casa. Atendimento gratuito pelo SUS.</p>
         <p><strong>Escola:</strong> Professores, coordenadores e diretores podem te ajudar e orientar.</p>
         <p><strong>Família e amigos:</strong> Conversar com alguém de confiança já é um grande passo!</p>
@@ -206,7 +301,7 @@ elif menu == "🆘 Preciso de Ajuda":
             <li>Isolar-se de amigos e familiares</li>
         </ul>
         <br>
-        <p><strong>Lembre-se:</strong> buscar ajuda é um ato de coragem. Você não está sozinho e sua vida é importante. 💛</p>
+        <p><strong style="color:#fbbf24;">Lembre-se:</strong> buscar ajuda é um ato de coragem. Você não está sozinho e sua vida é importante. 💛</p>
     </div>
     """, unsafe_allow_html=True)
 
@@ -220,11 +315,11 @@ elif menu == "👩‍🏫 Sobre Nós":
         <p>Este site foi desenvolvido por um grupo de cinco estudantes que acreditam que falar sobre saúde mental deveria ser algo tão natural quanto falar sobre saúde física.</p>
         <p>Nosso objetivo é levar informação verdadeira, sem medos nem tabus, para que mais jovens se sintam compreendidos e saibam que não estão sós.</p>
         <br>
-        <p style="font-size: 18px;"><strong>Nossa mensagem final:</strong></p>
+        <p style="font-size: 18px;"><strong style="color:#a78bfa;">Nossa mensagem final:</strong></p>
         <p style="font-size: 18px;">Cuide de você. Respeite seus limites. Valorize sua jornada.</p>
         <p style="font-size: 18px;">Está tudo bem não estar bem às vezes — o importante é saber que pode pedir ajuda. 💚</p>
         <br>
         <p>Projeto Escolar — Novembro de 2026</p>
-        <p>💛 Você importa. Sua história importa. Não desista de você.</p>
+        <p style="color:#fbbf24;">💛 Você importa. Sua história importa. Não desista de você.</p>
     </div>
     """, unsafe_allow_html=True)
